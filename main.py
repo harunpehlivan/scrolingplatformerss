@@ -15,27 +15,24 @@ for i in range(len(dimentions['X'])):
 hitbox = square.Thing(backg, 50, 40, "Red", 15, 75, 25, 10)
 player = square.Thing(backg, 50, 50, "Red", 15, 75, 25, 10)
 def t():
-  end = False
   global move1, move2, move3
   tong2 = False
   ong2 = False
   for ob in floors:
-    tong2 = ob.touching(hitbox)
-    if tong2:
+    if tong2 := ob.touching(hitbox):
       ong2 = True
-  if move1==1 and floors[0].x_position1!=0 and ong2==False:
+  if move1 == 1 and floors[0].x_position1 != 0 and not ong2:
     for ob in floors:
       ob.moveR()
     move1=0
-  elif move2==2 and ong2==False:
+  elif move2 == 2 and not ong2:
     for ob in floors:
       ob.moveL()
     move2=0
   ong = False
   tong = False
   for ob in floors:
-    tong = ob.touching(player)
-    if tong:
+    if tong := ob.touching(player):
       ong = True
   if not ong and move3 != 3:
     player.moveD()
@@ -48,8 +45,7 @@ def t():
     hitbox.moveU()
   if move3!=0:
     move3=0
-  if floors[-1].touching(player):
-    end = True
+  end = bool(floors[-1].touching(player))
   if not end:
     window.after(50, t)
 def ml(master):

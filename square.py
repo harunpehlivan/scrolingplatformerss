@@ -55,17 +55,15 @@ class Thing:
     y2 = self.y_position1+self.height1
     self.Back.move_item(self.rectangle, x1, y1, x2, y2)
   def touching(self, selft):
-    collision = False
     # Thing one
     top = self.y_position1
     bottom = self.y_position1 + self.height1
     left = self.x_position1
-    right = self.x_position1 + self.width1 
+    right = self.x_position1 + self.width1
     # Think big
     topt = selft.y_position1
     bottomt = selft.y_position1 + selft.height1
-    leftt = selft.x_position1 
+    leftt = selft.x_position1
     rightt = selft.x_position1  + selft.width1
-    if((bottomt > top) and (topt < bottom) and (rightt > left) and (leftt < right)):
-      collision = True
-    return collision
+    return ((bottomt > top) and (topt < bottom) and (rightt > left)
+            and (leftt < right))
